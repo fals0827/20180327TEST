@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         ArrayList<books> list=new ArrayList<books>();
-        int a = 1 ;
+        int a = 1 , b = 0;
         while (a != 0){
             System.out.println("功能表");
             System.out.println("=============================");
@@ -17,21 +17,33 @@ public class Main {
             System.out.println("0. 結束使用");
             System.out.println("=============================");
             System.out.println("請輸入選項:");
-            int listsize = list.size();
             int x = scn.nextInt();
+            int listsize = list.size();
             switch (x){
                 case 0:
                     a=0;
                     break;
                 case 1:
-                    System.out.println("書名\t"+"作者\t"+"出版社\t"+"ISBN\t"+"價格");
-                    list.add(new books(scn.next(),scn.next(),scn.next(),scn.next(),scn.nextInt()));
+                    System.out.println("書名:");
+                    String tit =scn.next();
+                    System.out.println("作者:");
+                    String aut =scn.next();
+                    System.out.println("出版社:");
+                    String pub =scn.next();
+                    System.out.println("ISBN:");
+                    String isb =scn.next();
+                    System.out.println("價格:");
+                    int pri = scn.nextInt();
+                    list.add(new books(tit,aut,pub,isb,pri));
                     break;
                 case 2:
                     int i = 0 ;
+                    System.out.println("請輸入錯誤之書名:");
+                    String wrongTitle =scn.next();
                     while (i < listsize){
                         books bookN = (books)list.get(i);
-                        if (bookN.getTitle().equals(scn.next())){
+                        if (bookN.getTitle().equals(wrongTitle)){
+                            System.out.println("請輸入正確之書名");
                             bookN.setTitle(scn.next());
                             i = listsize;
                         }else {
@@ -41,12 +53,16 @@ public class Main {
                     break;
                 case 3:
                     int j = 0;
+                    System.out.println("請輸入書名:");
                     String strTitle = scn.next();
                     while (j < listsize){
                         books bookN = (books)list.get(j);
                         if (bookN.getTitle().equals(strTitle)){
                             bookN.showInfo();
                             j = listsize;
+                        }
+                        else {
+                            j ++;
                         }
                     }
                     break;

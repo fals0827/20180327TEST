@@ -41,7 +41,7 @@ public class books {
     }
 
     public void setPrice(int price1) {
-        if (price >= 0){this.price = price1;}
+        if (price1 >= 0){this.price = price1;}
         else {this.price=200;}
     }
     public int getPrice() {
